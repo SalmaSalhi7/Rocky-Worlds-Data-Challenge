@@ -40,6 +40,6 @@ hide_plots          True
 verbose             True
 
 topdir              /
-inputdir            /home/ssalhi/scratch/ROCKY_WORLDS_DATA/lhs1140b/real_data/eclipse2
-outputdir           /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/lhs1140b_real/step1/eclipse2/stage1
+inputdir            /home/ssalhi/scratch/ROCKY_WORLDS_DATA/lhs1140b/eclipse1
+outputdir           /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/lhs1140b/step1/eclipse1/stage1
 

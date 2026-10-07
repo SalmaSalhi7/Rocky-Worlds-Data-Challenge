@@ -33,6 +33,6 @@ save_output     True
 save_fluxdata   True
 verbose         True
 topdir          /
-inputdir        /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/lhs1140b_real/step1/eclipse2/stage2
-outputdir       /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/lhs1140b_real/step1/eclipse2/stage3
+inputdir        /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/lhs1140b/step1/eclipse1/stage2
+outputdir       /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/lhs1140b/step1/eclipse1/stage3
 
