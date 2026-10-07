@@ -122,8 +122,8 @@ The folder contains the following outputs:
 # TO RECREATE OUR RESULTS FOR THE DATA CHALLENGE: 
 
 1. Run step 1 using the `preprocessing_template.yaml` provided. 
-2. (Optional): Using the `trim_eclipse_h5.ipynb` notebook, trim each outputted `stage3/*.h5` file to remove the ramp. 
-3. (Optional): Using either your own trimmed data or the pre-trimmed and pre-processed data in `trimmed_cleaned_data`, run step 2. Use the provided `individual_fit_eclipse.yaml` for each eclipse. You can modify the parameters however you like for each eclipse. 
+2. Using the `trim_eclipse_h5.ipynb` notebook, trim each outputted `stage3/*.h5` file to remove the ramp. 
+3. (Optional): Use the provided `individual_fit_eclipse.yaml` for each eclipse. You can modify the parameters however you like for each eclipse. 
 4. Run step 3 to get the joint fit that was submitted to the Rocky Worlds Data Challenge. Use the provided `joint_fit_template.yaml`--the parameters are already set to exactly what I used to produce the result I submitted. Change the file paths depending on where you stored the trimmed cleaned data. 
 
-I've provided the submission forms for all of our submissions, the one that produced the highest score is `form_LHS1140b_ecl4times_20260827_164049.json`, which contains the results from the fits using the `joint_fit_template.yaml` provided. 
+I've provided the submission forms for all of our submissions; the one that produced the highest score is `form_LHS1140b_ecl4times_20260827_164049.json`, which contains the results from the fits using the `joint_fit_template.yaml` provided. 
