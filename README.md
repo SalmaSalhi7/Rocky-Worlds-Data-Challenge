@@ -1,5 +1,7 @@
 # Eclipse Pipeline
 
+**This code was created with the help of Codex model GPT-5.6 Sol**
+
 This repository packages a three-step workflow for analyzing the raw eclipse data, from pre-processing to producing a joint fit of X lightcurves:
 
 1. Pre-processing with Eureka!
