@@ -1,6 +1,6 @@
-planet_name: lhs1140b_real
-target_name: lhs1140b_real
-eclipse_number: 2
+planet_name: lhs1140b
+target_name: lhs1140b
+eclipse_number: 1
 
 paths:
   # Absolute root where step outputs will be written.
@@ -10,13 +10,11 @@ paths:
   # Optional topdir passed into the Eureka! ECF files.
   topdir: /
   # Raw input data directory for this eclipse.
-  raw_input_dir: /home/ssalhi/scratch/ROCKY_WORLDS_DATA/lhs1140b_real/eclipse2/
+  raw_input_dir: /home/ssalhi/scratch/ROCKY_WORLDS_DATA/lhs110b/real_data/eclipse1
 
 preprocessing:
   # Leave blank now; Eureka! is the active backend. Future preprocessing packages can be added later.
   backend: "eureka"
-  exotedrf: 
-    exotedrf_yaml_dir: /home/ssalhi/Rocky-Worlds/configs/exotedrf_templates/run_DMS.yaml
   eventlabel_base: miri_lhs1140
   stages:
     stage1:

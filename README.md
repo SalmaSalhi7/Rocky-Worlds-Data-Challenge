@@ -1,6 +1,6 @@
 # Eclipse Pipeline
 
-**This code was created with the help of Codex model GPT-5.6 Sol**
+**This code was created with the help of Codex model GPT-5.6 Sol.**
 
 This repository packages a three-step workflow for analyzing the raw eclipse data, from pre-processing to producing a joint fit of X lightcurves:
 
@@ -27,11 +27,10 @@ Edit `configs/preprocessing_template.yaml` for a specific eclipse.
 
 Key fields:
 
-- `preprocessing.backend`: leave blank for now, or set to `eureka`
-- `planet_name` and `eclipse_number`
-- `paths.raw_input_dir`
+- `preprocessing.backend`
+- `planet_name` and `eclipse_number`: change the number depending on which eclipse you want to process. 
+- `paths.raw_input_dir`: change this for each eclipse to where the input data is stored.
 - `paths.output_root`
-- per-stage paths and ECF parameter overrides
 - `stages.stage1.enabled`, `stages.stage2.enabled`, `stages.stage3.enabled`
 
 To run the pre-processing step with Eureka!:
