@@ -32,7 +32,7 @@ parameters:
 fit:
   # Choose emcee or dynesty. Dynesty returns posterior samples and evidence
   # from the same nested-sampling run.
-  sampler: emcee
+  sampler: dynesty
   nwalkers: 100
   nsteps: 10000
   burn_in: 2000
@@ -51,9 +51,9 @@ fit:
   evidence:
     # Used only to request the extra evidence run when sampler is emcee.
     # A dynesty primary fit always computes evidence.
-    enabled: false
+    enabled: true
     nlive: 500
-    dlogz: 0.1
+    dlogz: 1
     bound: multi
     sample: rwalk
     progress: true
@@ -86,10 +86,10 @@ eclipses:
   #     sigma: {type: uniform, initial: 0.001, lower: 1.0e-8, upper: 0.01}
   - eclipse_number: 1
     data:
-      path: /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/lhs1140b/step1/eclipse1/eclipse1_trimmed_SpecData.h5
+      path: /home/ssalhi/Rocky-Worlds-public/trimmed_cleaned_data/eclipse1_trimmed_SpecData.h5
     transit:
-      t_secondary_mjd: {type: fixed, value: 61231.804273} # 61231.813 61231.833892
-      ecc_prior: {type: fixed, value: 0.0}
+      t_secondary_mjd: {type: uniform, initial: 61231.935526, lower: 61231.89, upper: 61231.97} # 61231.813
+      ecc_prior: {type: uniform, initial: 0.0, lower: 0.0, upper: 0.1}
     detrending:
       model_type: linear
       linear_intercept: {type: uniform, initial: 1.0, lower: 0.8, upper: 1.2}
@@ -99,10 +99,10 @@ eclipses:
       sigma_clip: 4.0
   - eclipse_number: 2
     data:
-      path: /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/lhs1140b/step1/eclipse2/eclipse2_trimmed_SpecData.h5
+      path: /home/ssalhi/Rocky-Worlds-public/trimmed_cleaned_data/eclipse2_trimmed_SpecData.h5
     transit:
-      t_secondary_mjd: {type: fixed, value: 61256.541079} # 61256.582 61256.566 61256.571138
-      ecc_prior: {type: fixed, value: 0.0}
+      t_secondary_mjd: {type: uniform, initial: 61256.672771, lower: 61256.63, upper: 61256.71} # 61256.582 61256.566
+      ecc_prior: {type: uniform, initial: 0.0, lower: 0.0, upper: 0.1}
     detrending:
       model_type: linear
       linear_intercept: {type: uniform, initial: 1.0, lower: 0.8, upper: 1.2}
@@ -112,10 +112,10 @@ eclipses:
       sigma_clip: 4.0
   - eclipse_number: 3
     data:
-      path: /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/lhs1140b/step1/eclipse3/eclipse3_trimmed_SpecData.h5
+      path: /home/ssalhi/Rocky-Worlds-public/trimmed_cleaned_data/eclipse3_trimmed_SpecData.h5
     transit:
-      t_secondary_mjd: {type: fixed, value: 61355.488301} # 61355.488301 61355.520125
-      ecc_prior: {type: fixed, value: 0.0}
+      t_secondary_mjd: {type: uniform, initial: 61355.621754, lower: 61355.58, upper: 61355.66} # 61355.488301
+      ecc_prior: {type: uniform, initial: 0.0, lower: 0.0, upper: 0.1}
     detrending:
       model_type: linear
       linear_intercept: {type: uniform, initial: 1.0, lower: 0.8, upper: 1.2}
@@ -125,10 +125,10 @@ eclipses:
       sigma_clip: 4.0
   - eclipse_number: 4
     data:
-      path: /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/lhs1140b/step1/eclipse4/eclipse4_trimmed_SpecData.h5
+      path: /home/ssalhi/Rocky-Worlds-public/trimmed_cleaned_data/eclipse4_trimmed_SpecData.h5
     transit:
-      t_secondary_mjd: {type: fixed, value: 61380.225801} # 61380.359 61380.23 61380.257371
-      ecc_prior: {type: fixed, value: 0.0}
+      t_secondary_mjd: {type: fixed, value: 61380.359000} # 61380.359 61380.23
+      ecc_prior: {type: uniform, initial: 0.0, lower: 0.0, upper: 0.1}
     detrending:
       model_type: linear
       linear_intercept: {type: uniform, initial: 1.0, lower: 0.8, upper: 1.2}
@@ -138,10 +138,10 @@ eclipses:
       sigma_clip: 4.0
   - eclipse_number: 5
     data:
-      path: /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/lhs1140b/step1/eclipse5/eclipse5_trimmed_SpecData.h5
+      path: /home/ssalhi/Rocky-Worlds-public/trimmed_cleaned_data/eclipse5_trimmed_SpecData.h5
     transit:
-      t_secondary_mjd: {type: fixed, value: 61404.962606} # 61404.966 61404.994618
-      ecc_prior: {type: fixed, value: 0.0}
+      t_secondary_mjd: {type: uniform, initial: 61405.096246, lower: 61405.05, upper: 61405.13} # 61404.966
+      ecc_prior: {type: uniform, initial: 0.0, lower: 0.0, upper: 0.1}
     detrending:
       model_type: linear
       linear_intercept: {type: uniform, initial: 1.0, lower: 0.8, upper: 1.2}
@@ -151,10 +151,10 @@ eclipses:
       sigma_clip: 4.0
   - eclipse_number: 6
     data:
-      path: /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/lhs1140b/step1/eclipse6/eclipse6_trimmed_SpecData.h5
+      path: /home/ssalhi/Rocky-Worlds-public/trimmed_cleaned_data/eclipse6_trimmed_SpecData.h5
     transit:
-      t_secondary_mjd: {type: fixed, value: 61578.120940} # 61578.120940 61578.155342
-      ecc_prior: {type: fixed, value: 0.0}
+      t_secondary_mjd: {type: uniform, initial: 61578.256966, lower: 61578.21, upper: 61578.29} # 61578.120940
+      ecc_prior: {type: uniform, initial: 0.0, lower: 0.0, upper: 0.1}
     detrending:
       model_type: linear
       linear_intercept: {type: uniform, initial: 1.0, lower: 0.8, upper: 1.2}
@@ -164,10 +164,10 @@ eclipses:
       sigma_clip: 4.0
   - eclipse_number: 7
     data:
-      path: /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/lhs1140b/step1/eclipse7/eclipse7_trimmed_SpecData.h5
+      path: /home/ssalhi/Rocky-Worlds-public/trimmed_cleaned_data/eclipse7_trimmed_SpecData.h5
     transit:
-      t_secondary_mjd: {type: fixed, value: 61602.857745} # 61602.732 61602.857745 61602.892589
-      ecc_prior: {type: fixed, value: 0.0}
+      t_secondary_mjd: {type: uniform, initial: 61602.994211, lower: 61602.95, upper: 61603.03} # 61602.732 61602.857745
+      ecc_prior: {type: uniform, initial: 0.0, lower: 0.0, upper: 0.1}
     detrending:
       model_type: linear
       linear_intercept: {type: uniform, initial: 1.0, lower: 0.8, upper: 1.2}
@@ -177,10 +177,10 @@ eclipses:
       sigma_clip: 4.0
   - eclipse_number: 8
     data:
-      path: /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/lhs1140b/step1/eclipse8/eclipse8_trimmed_SpecData.h5
+      path: /home/ssalhi/Rocky-Worlds-public/trimmed_cleaned_data/eclipse8_trimmed_SpecData.h5
     transit:
-      t_secondary_mjd: {type: fixed, value: 61627.594551} # 61627.611 61627.629835
-      ecc_prior: {type: fixed, value: 0.0}
+      t_secondary_mjd: {type: uniform, initial: 61627.731457, lower: 61627.69, upper: 61627.77} # 61627.611
+      ecc_prior: {type: uniform, initial: 0.0, lower: 0.0, upper: 0.1}
     detrending:
       model_type: linear
       linear_intercept: {type: uniform, initial: 1.0, lower: 0.8, upper: 1.2}
@@ -190,10 +190,10 @@ eclipses:
       sigma_clip: 4.0
   - eclipse_number: 9
     data:
-      path: /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/lhs1140b/step1/eclipse9/eclipse9_trimmed_SpecData.h5
+      path: /home/ssalhi/Rocky-Worlds-public/trimmed_cleaned_data/eclipse9_trimmed_SpecData.h5
     transit:
-      t_secondary_mjd: {type: fixed, value: 61726.542467} # 61726.542467 61726.578820
-      ecc_prior: {type: fixed, value: 0.0}
+      t_secondary_mjd: {type: uniform, initial: 61726.680440, lower: 61726.64, upper: 61726.72} # 61726.542467
+      ecc_prior: {type: uniform, initial: 0.0, lower: 0.0, upper: 0.1}
     detrending:
       model_type: linear
       linear_intercept: {type: uniform, initial: 1.0, lower: 0.8, upper: 1.2}
