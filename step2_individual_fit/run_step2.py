@@ -5,9 +5,9 @@ from pathlib import Path
 
 import numpy as np
 
+from pipeline.utils import config
 from pipeline.utils.config import copy_yaml, dump_yaml, load_yaml, timestamp_tag
 from pipeline.utils.io import (
-    inject_eclipse,
     load_photometry_dataset,
     preprocess_dataset,
     save_corrected_photometry_h5,
@@ -95,15 +95,7 @@ def main():
         time_coordinate=time_coordinate,
         phase_reference_mjd=phase_reference_mjd,
     )
-    data, injection_metadata = inject_eclipse(data, config)
-    if injection_metadata["inject_eclipse"]:
-        np.save(run_dir / "injected_eclipse_model.npy", data["injected_eclipse_model"])
-        print(
-            f"Injected a {injection_metadata['depth_ppm']:.3f} ppm eclipse at "
-            f"MJD {injection_metadata['time_mjd']:.9f}"
-        )
     resolved_config = build_resolved_config(config, config["data"]["path"])
-    resolved_config["injection"] = injection_metadata
     dump_yaml(resolved_config, run_dir / "config_resolved.yaml")
 
     fit_result = run_individual_mcmc(data, resolved_config, run_dir)
@@ -118,8 +110,7 @@ def main():
         "summary": fit_result["summary"].tolist(),
         "labels": fit_result["labels"],
         "discard": fit_result["discard"],
-        "evidence": fit_result["evidence"],
-        "injection": injection_metadata,
+        "evidence": fit_result["evidence"]
     }
     if fit_result["sampler_name"] == "emcee":
         summary.update(
