@@ -1,0 +1,9 @@
+numpy
+matplotlib
+emcee
+batman-package
+h5py
+PyYAML
+corner
+astropy
+

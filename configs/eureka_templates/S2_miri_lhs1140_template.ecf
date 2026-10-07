@@ -1,0 +1,11 @@
+# Eureka! Control File for Stage 2: Data Reduction
+
+suffix                  rateints
+skip_flat_field         True
+skip_photom             True
+skip_extract_1d         True
+hide_plots              False
+topdir                  /
+inputdir                /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/lhs1140b_real/step1/eclipse2/stage1
+outputdir               /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/lhs1140b_real/step1/eclipse2/stage2
+

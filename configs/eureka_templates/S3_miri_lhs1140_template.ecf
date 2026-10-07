@@ -1,0 +1,38 @@
+# Eureka! Control File for Stage 3: Data Reduction
+
+ncpu            4
+nfiles          100
+max_memory      0.5
+indep_batches   False
+suffix          calints
+calibrated_spectra  True
+ywindow         [1, 255]
+xwindow         [1, 255]
+dqmask          True
+ff_outlier      True
+bg_thresh       [5,5]
+interp_method   linear
+centroid_method mgmc
+ctr_guess       [127, 127]
+ctr_cutout_size 10
+centroid_tech   com
+gauss_frame     15
+phot_method     photutils
+aperture_edge   exact
+aperture_shape  circle
+moving_centroid False
+skip_apphot_bg  False
+photap          5
+skyin           12
+skywidth        18
+isplots_S3      3
+nplots          5
+testing_S3      False
+hide_plots      True
+save_output     True
+save_fluxdata   True
+verbose         True
+topdir          /
+inputdir        /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/lhs1140b_real/step1/eclipse2/stage2
+outputdir       /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/lhs1140b_real/step1/eclipse2/stage3
+

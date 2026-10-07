@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.fits
+*.h5
+*.pth
+*.pt
+*.ckpt
+outputs/
+logs/
+.env
+
+__pycache__/
+*.pyc
+*.pyo

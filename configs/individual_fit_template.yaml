@@ -1,0 +1,109 @@
+planet_name: lhs1140b_real
+target_name: lhs1140b_real
+eclipse_number: 2
+
+output:
+  root_dir: /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/lhs1140b_real/step2/eclipse2/
+  run_label: exp_linear
+
+data:
+  # Can be a SpecData.h5 file or a directory containing one.
+  path: /home/ssalhi/Rocky-Worlds/notebooks/ecl2_flare_subtracted_SpecData.h5
+transit:
+  expected_midtime_mjd: 61256.5711898
+  fixed:
+    t0_mjd: 61256.5711898 
+    period_days: 24.7372457
+    rp: 0.0739 # in units of stellar radii 
+    a: 95.3
+    inc: 89.86
+    ecc: 0.0
+    w: 90.0
+    limb_dark: quadratic
+    u: [0.16, 0.22]
+
+detrending:
+  model_type: exp+linear
+  initial_guess: [0.0, 0.0, 1.0, 0.0, 1.0]
+  # Proper uniform priors are required for Bayesian evidence. One pair per
+  # detrending coefficient, in the same order as initial_guess.
+  prior_bounds: [[-0.1, 0.1], [-5.0, 5.0], [0.8, 1.2], [-0.5, 0.5], [0.8, 1.2]]
+
+fit:
+  nwalkers: 100
+  nsteps: 50000
+  burn_in: 1000
+  random_seed: 42
+  dt_s_initial_hours: 5.3
+  fp_initial: 0.000085
+  dt_s_bounds_hours: [0.0, 0.0]
+  fp_bounds: [-0.0002, 0.0002]
+  sigma_min: 0.0
+  priors: {}
+  evidence:
+    enabled: true
+    nlive: 500
+    dlogz: 0.1
+    bound: multi
+    sample: rwalk
+    progress: true
+    sigma_bounds: [1.0e-8, 0.01]
+  # Optional correlated-noise model. When disabled, the original likelihood is used.
+  gaussian_process:
+    enabled: false
+    include_flux_errors: false   # false keeps sigF as the full diagonal noise term
+    # Kernel terms are added together. Amplitudes are in normalized-flux units,
+    # while rho/period are in hours. All sampled values are natural logarithms.
+    # Supported kernels:
+    #   matern32: log_sigma and log_rho
+    #   sho:      log_sigma, log_period, and log_Q
+    #   rotation: sum of two linked SHO terms parameterized by
+    #             log_sigma, log_period, log_Q0, log_dQ, and log_f
+    kernels:
+      - name: stellar
+        kernel: matern32
+        log_sigma_initial: -10.414  # 30 ppm
+        log_rho_initial: -0.693     # 0.5 hours
+        log_sigma_bounds: [-13.816, -9.903]  # 1--50 ppm
+        log_rho_bounds: [-2.303, 0.765]      # 0.1--2.15 hours
+      - name: flare
+        kernel: matern32
+        log_sigma_initial: -9.210   # 100 ppm
+        log_rho_initial: 1.792      # 6 hours
+        log_sigma_bounds: [-13.816, -6.908]  # 1--1000 ppm
+        log_rho_bounds: [0.765, 3.0]         # 2.15--20.1 hours
+      # Example underdamped oscillator (disabled here; add it to kernels to use it):
+      # - name: oscillation
+      #   kernel: sho
+      #   log_sigma_initial: -8.112        # 300 ppm
+      #   log_period_initial: -3.401       # 2 minutes = 0.0333 hours
+      #   log_Q_initial: 1.609              # Q = 5
+      #   log_sigma_bounds: [-11.513, -5.298]  # 10--5000 ppm
+      #   log_period_bounds: [-4.094, -2.996]  # 1--3 minutes
+      #   log_Q_bounds: [0.693, 3.401]         # Q = 2--30
+      # Example two-SHO kernel matching celerite2 RotationTerm:
+      # - name: two_sho_variability
+      #   kernel: rotation
+      #   log_sigma_initial: -7.601          # 500 ppm
+      #   log_period_initial: -2.303         # 0.1 hours = 6 minutes
+      #   log_Q0_initial: 0.0                # Q0 = 1
+      #   log_dQ_initial: 0.0                # dQ = 1
+      #   log_f_initial: -0.693              # f = 0.5
+      #   log_sigma_bounds: [-11.513, -4.605]  # 10--10000 ppm
+      #   log_period_bounds: [-2.659, 0.693]    # 4.2--120 minutes
+      #   log_Q0_bounds: [-4.605, 2.996]        # Q0 = 0.01--20
+      #   log_dQ_bounds: [-4.605, 3.912]        # dQ = 0.01--50
+      #   log_f_bounds: [-4.605, 0.0]           # f = 0.01--1
+
+preprocessing:
+  normalize: median
+  sigma_clip: 4.0
+
+plots:
+  corrected_flux: true
+  gaussian_process: true  # Written only when fit.gaussian_process.enabled is true.
+  rednoise: true
+  walker: true
+  corner: true
+  binned_fit: true
+  n_bins: 100

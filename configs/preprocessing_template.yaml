@@ -1,0 +1,98 @@
+planet_name: lhs1140b_real
+target_name: lhs1140b_real
+eclipse_number: 2
+
+paths:
+  # Absolute root where step outputs will be written.
+  output_root: /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/
+  # Directory containing the template ECF files.
+  template_dir: /home/ssalhi/Rocky-Worlds/configs/eureka_templates/
+  # Optional topdir passed into the Eureka! ECF files.
+  topdir: /
+  # Raw input data directory for this eclipse.
+  raw_input_dir: /home/ssalhi/scratch/ROCKY_WORLDS_DATA/lhs1140b_real/eclipse2/
+
+preprocessing:
+  # Leave blank now; Eureka! is the active backend. Future preprocessing packages can be added later.
+  backend: "eureka"
+  exotedrf: 
+    exotedrf_yaml_dir: /home/ssalhi/Rocky-Worlds/configs/exotedrf_templates/run_DMS.yaml
+  eventlabel_base: miri_lhs1140
+  stages:
+    stage1:
+      enabled: true
+      template: S1_miri_lhs1140_template.ecf
+      params:
+        suffix: uncal
+        maximum_cores: quarter
+        skip_emicorr: true
+        skip_saturation: false
+        skip_firstframe: false
+        skip_lastframe: false
+        skip_refpix: false
+        skip_linearity: false
+        skip_rscd: true
+        skip_dark_current: false
+        skip_jump: false
+        skip_ramp_fitting: false
+        jump_rejection_threshold: 7.0
+        custom_linearity: false
+        remove_390hz: false
+        grouplevel_bg: false
+        ncpu: 8
+        bg_y1: 6
+        bg_y2: 26
+        bg_deg: 0
+        bg_method: median
+        p3thresh: 5
+        isplots_S1: 1
+        nplots: 5
+        hide_plots: true
+        verbose: true
+    stage2:
+      enabled: true
+      template: S2_miri_lhs1140_template.ecf
+      params:
+        suffix: rateints
+        skip_flat_field: true
+        skip_photom: true
+        skip_extract_1d: false
+        hide_plots: false
+        verbose: true
+    stage3:
+      enabled: true
+      template: S3_miri_lhs1140_template.ecf
+      params:
+        ncpu: 1
+        nfiles: 100
+        max_memory: 0.5
+        indep_batches: false
+        suffix: calints
+        calibrated_spectra: false
+        ywindow: [1, 255]
+        xwindow: [1, 255]
+        dqmask: true
+        ff_outlier: true
+        bg_thresh: [5, 5]
+        interp_method: linear
+        centroid_method: mgmc
+        ctr_guess: [127, 127]
+        ctr_cutout_size: 10
+        centroid_tech: com
+        gauss_frame: 15
+        phot_method: photutils
+        aperture_edge: exact
+        aperture_shape: circle
+        moving_centroid: false
+        skip_apphot_bg: false
+        photap: 5
+        skyin: 12
+        skywidth: 18
+        isplots_S3: 3
+        nplots: 5
+        testing_S3: false
+        hide_plots: true
+        save_output: true
+        save_fluxdata: false
+        verbose: true
+

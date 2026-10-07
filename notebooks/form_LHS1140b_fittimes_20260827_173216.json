@@ -1,0 +1,428 @@
+{
+  "01": {
+    "description": "Name the target planet associated with this submission form",
+    "example": "GJ 3929 b",
+    "format": "select",
+    "options": [
+      "Select an option",
+      "GJ 3929 b",
+      "LHS 1140 b"
+    ],
+    "prompt": "For which planet are you filling out this form?",
+    "required": true,
+    "response": "LHS 1140 b"
+  },
+  "02": {
+    "description": "Short name for your collaboration",
+    "example": "Ad astra",
+    "format": "str",
+    "prompt": "Group name",
+    "required": true,
+    "response": "IREx"
+  },
+  "03": {
+    "description": "Name of the person submitting on behalf of group",
+    "example": "Henrietta Swan Leavitt",
+    "format": "str",
+    "prompt": "Submitter name",
+    "required": true,
+    "response": "Salma Salhi"
+  },
+  "04": {
+    "description": "Email address for submitter",
+    "example": "hsleavitt@harvard.edu",
+    "format": "str",
+    "prompt": "Submitter email",
+    "required": true,
+    "response": "salma.salhi@umontreal.ca"
+  },
+  "05": {
+    "description": "Name of secondary contact person",
+    "example": "Williamina Fleming",
+    "format": "str",
+    "prompt": "Secondary contact",
+    "required": false,
+    "response": "Nicholas Connors "
+  },
+  "06": {
+    "description": "Email address for secondary contact",
+    "example": "wfleming@harvard.edu",
+    "format": "str",
+    "prompt": "Secondary contact email",
+    "required": false,
+    "response": " nicholas.connors@umontreal.ca"
+  },
+  "07": {
+    "description": "Comma-separated names of group members, including the submitter",
+    "example": "Henrietta Swan Leavitt, Williamina Fleming",
+    "format": "str",
+    "prompt": "Collaboration members",
+    "required": true,
+    "response": "Salma Salhi, Nicholas Connors"
+  },
+  "08": {
+    "description": "Report the version number of the JWST pipeline that you used",
+    "example": "1.20.2",
+    "format": "str",
+    "prompt": "If you used the JWST reduction pipeline, which version?",
+    "required": false,
+    "response": ""
+  },
+  "09": {
+    "description": "Report JWST pipeline steps used in the data reduction along with any customizations to those steps. See the [calwebb_detector1 documentation](https://jwst-pipeline.readthedocs.io/en/latest/jwst/pipeline/calwebb_detector1.html) for step names and defaults. For example, if you used the default settings for all steps except jump detection, your entry might be: 'jump detection (with three_group_rejection_threshold = 7.0), all other steps with default settings'.",
+    "example": "ramp fitting, jump detection (with three_group_rejection_threshold = 7.0), ...",
+    "format": "str",
+    "prompt": "What (if any) steps within the JWST reduction pipeline's calwebb_detector1 were used?",
+    "required": false,
+    "response": "I used the Eureka! package which acts as a wrapper for some JWST reduction pipeline steps. I used version 1.3. For stage 1, the following steps were used: \n\n- saturation (default)\n- reference pixels (default)\n- linearity (default)\n- dark current (default)\n- jump detection (threshold of 7.0)\n- ramp fitting (default)"
+  },
+  "10": {
+    "description": "Report JWST pipeline steps used in the data reduction along with any customizations to those steps. See the [calwebb_image2 documentation](https://jwst-pipeline.readthedocs.io/en/latest/jwst/pipeline/calwebb_image2.html) for step names and defaults. For example, if you used the default settings for all steps except turning off the photom step, your entry might be: 'photom (with skip = True), all other steps with default settings'.",
+    "example": "assign_wcs, flat_field (with skip = True), photom (with skip = True), ...",
+    "format": "str",
+    "prompt": "What (if any) steps within the JWST reduction pipeline's calwebb_image2 were used?",
+    "required": false,
+    "response": "I used the Eureka! package, version 1.3. For stage 2, I used the following steps: \n\n- extract 1d "
+  },
+  "11": {
+    "description": "Report JWST pipeline steps used in the data reduction along with any customizations to those steps. See the [calwebb_tso3 documentation](https://jwst-pipeline.readthedocs.io/en/latest/jwst/pipeline/calwebb_tso3.html) for step names and defaults. For example, if you used the default settings for all steps except outlier detection, your entry might be: 'outlier_detection (with rolling_window_width = 11), all other steps with default settings'.",
+    "example": "outlier_detection (with rolling_window_width = 11), tso_photometry, ...",
+    "format": "str",
+    "prompt": "What (if any) steps within the JWST reduction pipeline's calwebb_tso3 were used?",
+    "required": false,
+    "response": "I used the Eureka! package, version 1.3. For stage 3, I used the following steps: \n\n- dq mask (default)\n- ff outliers (default)\n- interp method: linear\n- centroid method: mgmc \n- aperture shape: circle \n- aperture edge: exact \n- photmethod: photutils\n"
+  },
+  "12": {
+    "description": "Describe if or when you used public or private reduction tools in place of, or in addition to, the JWST pipeline",
+    "example": "We used the reduction pipeline custom_package v0.2.1.",
+    "format": "str",
+    "prompt": "Did you use another reduction pipeline? If so, which version?",
+    "required": false,
+    "response": "Eureka! package, v1.3"
+  },
+  "13": {
+    "description": "Aperture photometry, optimal extraction, Fortune et al (2025), etc?",
+    "example": "Aperture photometry",
+    "format": "str",
+    "prompt": "Photometric extraction method",
+    "required": true,
+    "response": "aperture photometry"
+  },
+  "14": {
+    "description": "Comma-separated radii (in pixels) for the aperture used for each eclipse. For example, if you fit all four GJ 3929 b eclipses in this submission and used a different aperture for each eclipse, your entry might be: 7.0, 8.0, 6.0, 6.5",
+    "example": "7.0, 8.0, 6.0, 6.5",
+    "format": "list[float/int]",
+    "prompt": "Describe the aperture radius used for each visit (with your best approximation of 'radius' for non-circular apertures)",
+    "required": false,
+    "response": "5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0"
+  },
+  "15": {
+    "description": "Comma-separated inner annulus radii (in pixels) used for background measurement for each eclipse. For example, if you fit all four GJ 3929 b eclipses in this submission and used a different inner annulus radius for each eclipse, your entry might be: 7.0, 8.0, 6.0, 6.5",
+    "example": "7.0, 8.0, 6.0, 6.5",
+    "format": "list[float/int]",
+    "prompt": "If you measured background from an annulus: inner annulus radius per visit",
+    "required": false,
+    "response": ""
+  },
+  "16": {
+    "description": "Comma-separated outer annulus radii (in pixels) used for background measurement for each eclipse. For example, if you fit all four GJ 3929 b eclipses in this submission and used a different outer annulus radius for each eclipse, your entry might be: 9.0, 10.0, 8.0, 8.5",
+    "example": "9.0, 10.0, 8.0, 8.5",
+    "format": "list[float/int]",
+    "prompt": "If you measured background from an annulus: outer annulus radius per visit",
+    "required": false,
+    "response": ""
+  },
+  "17": {
+    "description": "Scaling parameters are often multiplicative or added in quadrature",
+    "example": "sigma_jitter",
+    "format": "str",
+    "prompt": "Name any sampling parameters that scaled the photometric uncertainties",
+    "required": false,
+    "response": "sigma_jitter"
+  },
+  "18": {
+    "description": "Name the software package that computed the eclipse shape",
+    "example": "jaxoplanet",
+    "format": "str",
+    "prompt": "Which software was used to compute the eclipse model?",
+    "required": true,
+    "response": "batman v2.5.2"
+  },
+  "19": {
+    "description": "Name the distribution and its parameters. Use the structured fields below so the prior can be parsed automatically.",
+    "example": {
+      "parameter": "depth_ecl",
+      "prior_distribution_type": "uniform",
+      "prior_parameters": "lower=-500 ppm, upper=500 ppm"
+    },
+    "format": "prior_spec",
+    "options": [
+      "Select an option",
+      "fixed",
+      "uniform",
+      "normal",
+      "log-normal",
+      "truncated normal",
+      "log-uniform",
+      "custom / other",
+      "not applicable"
+    ],
+    "prompt": "What prior did you assume for eclipse depth?",
+    "required": true,
+    "response": {
+      "parameter": "ecl_depth (ppm)",
+      "prior_distribution_type": "uniform",
+      "prior_parameters": "lower=-200 ppm, upper=200ppm"
+    }
+  },
+  "20": {
+    "description": "Describe if negative depths were explored during your sampling.",
+    "example": "We allow for negative depths (brightening during the eclipse).",
+    "format": "str",
+    "prompt": "How did you handle negative eclipse depth values?",
+    "required": true,
+    "response": "We allow for negative eclipse depths so as not to bias towards a detection if there is no detectable eclipse. "
+  },
+  "21": {
+    "description": "Name the distribution and its parameters, name references if relevant. Use the structured fields below so the prior can be parsed automatically.",
+    "example": {
+      "parameter": "b",
+      "prior_distribution_type": "fixed",
+      "prior_parameters": "value=0.3"
+    },
+    "format": "prior_spec",
+    "options": [
+      "Select an option",
+      "fixed",
+      "uniform",
+      "normal",
+      "log-normal",
+      "truncated normal",
+      "log-uniform",
+      "custom / other",
+      "not applicable"
+    ],
+    "prompt": "What prior did you assume for impact parameter or orbital inclination?",
+    "required": true,
+    "response": {
+      "parameter": "inc (degrees)",
+      "prior_distribution_type": "fixed",
+      "prior_parameters": "value=89.86"
+    }
+  },
+  "22": {
+    "description": "Name the distribution and its parameters, name references if relevant. Use the structured fields below so the prior can be parsed automatically.",
+    "example": {
+      "parameter": "Rp/Rs",
+      "prior_distribution_type": "fixed",
+      "prior_parameters": "value=0.03"
+    },
+    "format": "prior_spec",
+    "options": [
+      "Select an option",
+      "fixed",
+      "uniform",
+      "normal",
+      "log-normal",
+      "truncated normal",
+      "log-uniform",
+      "custom / other",
+      "not applicable"
+    ],
+    "prompt": "What prior did you assume for the planet radius?",
+    "required": true,
+    "response": {
+      "parameter": "rp/rs ",
+      "prior_distribution_type": "fixed",
+      "prior_parameters": "value=0.0739"
+    }
+  },
+  "23": {
+    "description": "Name the distribution and its parameters, name references if relevant. Use the structured fields below so the prior can be parsed automatically.",
+    "example": {
+      "parameter": "t_ecl",
+      "prior_distribution_type": "uniform",
+      "prior_parameters": "lower=<start time>, upper=<end time>"
+    },
+    "format": "prior_spec",
+    "options": [
+      "Select an option",
+      "fixed",
+      "uniform",
+      "normal",
+      "log-normal",
+      "truncated normal",
+      "log-uniform",
+      "custom / other",
+      "not applicable"
+    ],
+    "prompt": "What prior did you assume for the mid-eclipse time?",
+    "required": true,
+    "response": {
+      "parameter": "t_ecl (BMJD_TDB)",
+      "prior_distribution_type": "fixed",
+      "prior_parameters": "eclipse 1: 61231.813 eclipse 2: 61256.566 eclipse 3: 61355.488301 eclipse 4: 61380.23 eclipse 5: 61404.966 eclipse 6: 61578.120940 eclipse 7: 61602.857745 eclipse 8: 61627.611 eclipse 9: 61726.542467"
+    }
+  },
+  "24": {
+    "description": "For eccentricity parameterizations that use a pair of fitted parameters, report the first parameter here. Name the distribution and its parameters, name references if relevant. Use the structured fields below so the prior can be parsed automatically.",
+    "example": {
+      "parameter": "ecosw",
+      "prior_distribution_type": "uniform",
+      "prior_parameters": "lower=-0.5, upper=0.5"
+    },
+    "format": "prior_spec",
+    "options": [
+      "Select an option",
+      "fixed",
+      "uniform",
+      "normal",
+      "log-normal",
+      "truncated normal",
+      "log-uniform",
+      "custom / other",
+      "not applicable"
+    ],
+    "prompt": "What prior did you assume for the first eccentricity parameter?",
+    "required": true,
+    "response": {
+      "parameter": "ecc",
+      "prior_distribution_type": "uniform",
+      "prior_parameters": "lower=0.0, upper=0.04"
+    }
+  },
+  "25": {
+    "description": "For eccentricity parameterizations that use a pair of fitted parameters, report the second parameter here. Name the distribution and its parameters, name references if relevant. Use the structured fields below so the prior can be parsed automatically.",
+    "example": {
+      "parameter": "esinw",
+      "prior_distribution_type": "uniform",
+      "prior_parameters": "lower=-0.5, upper=0.5"
+    },
+    "format": "prior_spec",
+    "options": [
+      "Select an option",
+      "fixed",
+      "uniform",
+      "normal",
+      "log-normal",
+      "truncated normal",
+      "log-uniform",
+      "custom / other",
+      "not applicable"
+    ],
+    "prompt": "What prior did you assume for the second eccentricity parameter?",
+    "required": true,
+    "response": {
+      "parameter": "omega (degrees)",
+      "prior_distribution_type": "fixed",
+      "prior_parameters": "value=90.0"
+    }
+  },
+  "26": {
+    "description": "Report the prior for the fitted or fixed parameter that controlled the orbital period, orbital separation, or scaled orbital separation in your eclipse model. Use the structured fields below so the prior can be parsed automatically.",
+    "example": {
+      "parameter": "P",
+      "prior_distribution_type": "fixed",
+      "prior_parameters": "value=<published period>"
+    },
+    "format": "prior_spec",
+    "options": [
+      "Select an option",
+      "fixed",
+      "uniform",
+      "normal",
+      "log-normal",
+      "truncated normal",
+      "log-uniform",
+      "custom / other",
+      "not applicable"
+    ],
+    "prompt": "What prior did you assume for the parameter that controlled the orbital period or orbital scale?",
+    "required": true,
+    "response": {
+      "parameter": "per (days)",
+      "prior_distribution_type": "fixed",
+      "prior_parameters": "value=24.73723"
+    }
+  },
+  "27": {
+    "description": "Use this field for model-specific geometry choices not already captured above, such as additional fixed parameters, derived relationships, or assumptions about a/Rs, stellar density, stellar radius, or inclination.",
+    "example": "Our starry eclipse model internally computes the semi-major axis from P (defined above), R_star (fixed to <value>), and M_star (fixed to <value>).",
+    "format": "str",
+    "prompt": "Describe any other orbital-geometry parameters used in the eclipse model.",
+    "required": false,
+    "response": "I first ran individual fits for each eclipse using a uniform prior for both the mid-eclipse time and the eccentricity. I then used those results to inform the joint-fit priors for the mid-eclipse times, but I kept the eccentricities uniform, because some of the individual eclipse fits did not align with the expected time for an eccentricity of zero. \n\nOther parameters in the eclipse model: \n- t0_mjd (fixed): 58399.43\n- a/R* (fixed): 95.3"
+  },
+  "28": {
+    "description": "If one accounts for the finite speed of light, there are differences in the predicted mid-eclipse time.",
+    "example": "We accounted for the varying light travel time between mid-transit and mid-eclipse by using the stellar radius to convert a/Rs into physical units.",
+    "format": "str",
+    "prompt": "Did you account for the difference in light travel time between transit and eclipse?",
+    "required": true,
+    "response": "No. "
+  },
+  "29": {
+    "description": "",
+    "example": "We included a stellar rotational modulation component.",
+    "format": "str",
+    "prompt": "Name any parameterized astrophysical model components used other than the eclipse, if any",
+    "required": false,
+    "response": ""
+  },
+  "30": {
+    "description": "If so, provide the polynomial order or other details along with parameter name | e.g., centroid=linear; psf_shape=quadratic.",
+    "example": "centroid=linear",
+    "format": "str",
+    "prompt": "Did you use any other detrending vectors?",
+    "required": false,
+    "response": ""
+  },
+  "31": {
+    "description": "",
+    "example": "We included a constant baseline term, and an exponential ramp function as a function of time.",
+    "format": "str",
+    "prompt": "Other than detrending vectors, which non-astrophysical model components did you include in the fit?",
+    "required": false,
+    "response": "We used a linear detrending model as a function of time. This has two parameters:\n- slope (uniform): lower=-0.1, upper=0.1\n- intercept (uniform): lower=0.8, upper=1.2\n\nNo functions were used to fit the ramps because we trimmed the time series to remove the ramp."
+  },
+  "32": {
+    "description": "",
+    "example": "We used a celerite SHO kernel with fixed Q=0.5, log S0 sampled uniformly between -20 and 0, and log omega0 fixed to the inverse visit duration.",
+    "format": "str",
+    "prompt": "If your model included a Gaussian process, name the kernel and any hyperparameter values/priors",
+    "required": false,
+    "response": ""
+  },
+  "33": {
+    "description": "Describe which of the astrophysical, detrending, and noise-model parameters were shared across all eclipses or fit separately for each eclipse.",
+    "example": "Shared across all eclipses: orbital period, inclination, planet radius, and eclipse depth. Fit independently for each eclipse: baseline flux, and sigma_jitter. GP hyperparameters were shared within each visit.",
+    "format": "str",
+    "prompt": "Which parameters were shared across eclipses, and which were fit independently for each eclipse?",
+    "required": true,
+    "response": "Shared across all eclipses: orbital period, inclination, planet radius, a/R*, t0 (transit), omega, sigma_jitter\nFit independently for each eclipse: t_secondary_mjd, eccentricity, linear intercept, linear slope"
+  },
+  "34": {
+    "description": "Which sampling algorithm did you use to sample your posterior distributions?",
+    "example": "dynamic nested sampler",
+    "format": "str",
+    "prompt": "What sampling algorithm did you use to produce your submitted posteriors?",
+    "required": true,
+    "response": "dynamic nested sampler"
+  },
+  "35": {
+    "description": "Did you sample posterior distributions with a published package, e.g., emcee, dynesty, or a custom tool?",
+    "example": "We sampled posteriors using our own MCMC algorithm based on that of Hastings (1970).",
+    "format": "str",
+    "prompt": "Posterior sampling reference",
+    "required": true,
+    "response": "dynesty v3.0.0"
+  },
+  "36": {
+    "description": "Name of your convergence criterion (e.g., dlogZ < 1) or convergence metric (e.g., Gelman-Rubin statistic < 1.01)",
+    "example": "We required that the Gelman-Rubin statistic be < 1.01 for all parameters and that the effective sample size be > 1000 for all parameters.",
+    "format": "str",
+    "prompt": "How did you assess sampling convergence when fitting the light curves?",
+    "required": true,
+    "response": "We required dlogZ < 1. "
+  }
+}
