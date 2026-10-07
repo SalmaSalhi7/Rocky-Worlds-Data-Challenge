@@ -6,6 +6,6 @@ skip_photom             True
 skip_extract_1d         True
 hide_plots              False
 topdir                  /
-inputdir                /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/lhs1140b/step1/eclipse1/stage1
-outputdir               /home/ssalhi/projects/def-lplevass/ssalhi/ROCKY_WORLDS_REPO/lhs1140b/step1/eclipse1/stage2
+inputdir                /path/to/lhs1140b/step1/eclipse1/stage1
+outputdir               /path/to/lhs1140b/step1/eclipse1/stage2
 
