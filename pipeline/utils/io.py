@@ -10,66 +10,6 @@ import numpy as np
 from .config import dump_yaml
 
 
-def inject_eclipse(data: dict[str, np.ndarray], config: dict) -> tuple[dict[str, np.ndarray], dict]:
-    """Inject a multiplicative secondary eclipse into a preprocessed light curve."""
-    injection = config.get("injection", {})
-    enabled = injection.get("inject_eclipse", False)
-    if not isinstance(enabled, (bool, np.bool_)):
-        raise ValueError("injection.inject_eclipse must be true or false")
-    if not enabled:
-        return data, {"inject_eclipse": False}
-
-    missing = [name for name in ("depth_ppm", "time_mjd") if name not in injection]
-    if missing:
-        raise ValueError(
-            "An enabled eclipse injection requires injection."
-            + " and injection.".join(missing)
-        )
-    depth_ppm = float(injection["depth_ppm"])
-    time_mjd_injection = float(injection["time_mjd"])
-    if not np.isfinite(depth_ppm) or depth_ppm < 0.0:
-        raise ValueError("injection.depth_ppm must be a finite, non-negative number")
-    if not np.isfinite(time_mjd_injection):
-        raise ValueError("injection.time_mjd must be finite")
-
-    time_mjd = np.asarray(data["time_mjd"], dtype=float)
-    if not np.nanmin(time_mjd) <= time_mjd_injection <= np.nanmax(time_mjd):
-        raise ValueError(
-            f"injection.time_mjd={time_mjd_injection} is outside the data range "
-            f"[{np.nanmin(time_mjd)}, {np.nanmax(time_mjd)}] MJD"
-        )
-
-    # Import locally to keep the general I/O helpers usable without batman.
-    from .models import resolve_transit_config, transit_model
-
-    time_ref = float(data.get("time_ref_mjd", time_mjd[0]))
-    transit_cfg = resolve_transit_config(config["transit"], time_ref)
-    injection_time_hours = (time_mjd_injection - time_ref) * 24.0
-    depth_fraction = depth_ppm * 1.0e-6
-    if depth_fraction >= 1.0:
-        raise ValueError("injection.depth_ppm must be less than 1,000,000 ppm")
-    # BATMAN's secondary-eclipse parameter is the planet/star flux ratio and
-    # its uneclipsed baseline is 1 + fp. Convert the requested fractional
-    # drop to fp, then normalize so the out-of-eclipse injected profile is 1.
-    planet_flux_ratio = depth_fraction / (1.0 - depth_fraction)
-    profile = transit_model(
-        data["time_hours"], injection_time_hours, planet_flux_ratio, transit_cfg
-    ) / (1.0 + planet_flux_ratio)
-
-    injected = dict(data)
-    injected["flux"] = np.asarray(data["flux"], dtype=float) * profile
-    injected["injected_eclipse_model"] = profile
-    metadata = {
-        "inject_eclipse": True,
-        "depth_ppm": depth_ppm,
-        "depth_fraction": depth_fraction,
-        "planet_flux_ratio": planet_flux_ratio,
-        "time_mjd": time_mjd_injection,
-        "time_hours": injection_time_hours,
-    }
-    return injected, metadata
-
-
 def find_specdata_file(path: str | Path) -> Path:
     path = Path(path)
     if path.is_file():
